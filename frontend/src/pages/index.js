@@ -1,15 +1,16 @@
 import * as React from "react"
 import styled from "styled-components";
 import nosotrosFoto from "../images/HeroImage.png";
-import dressCodeFoto from "../images/DressCode.jpg";
-import iconoUbicacion from "../images/marker.svg";
-import iconoTShirt from "../images/tshirt.svg";
-import iconoBoxJart from "../images/box-heart.svg";
-import iconoRSVP from "../images/envelope-open-text.svg";
+// import iconoUbicacion from "../images/marker.svg";
+import iconoUbicacion from "../images/location_chorated.svg";
+// import iconoTShirt from "../images/tshirt.svg";
+import iconoTShirt from "../images/tshirt_chorated.svg";
+// import iconoBoxJart from "../images/box-heart.svg";
+import iconoBoxJart from "../images/box-heart_chorated.svg";
+// import iconoRSVP from "../images/envelope-open-text.svg";
+import iconoRSVP from "../images/envelope_chorated.svg";
 import iconoArgentina from "../images/ArgentinaBandera.svg";
 import iconoMundo from "../images/earth-africa1.svg";
-
-
 
 
 const theme = {
@@ -24,7 +25,7 @@ const theme = {
   teagreen: {
     // default:"#7c8f3a",
     default:"#964742",
-    hover:"#505b25"},
+    hover:"#53221e"},
   beige: {
     default: "#e9edc9ff",
     hover:"#bfc3a5"},
@@ -47,16 +48,20 @@ const theme = {
 const Button = styled.button`
   background-color: ${(props) => theme[props.theme].default};
   color: white;
-  padding: 5px 15px;
-  border-radius: 5px;
+  padding: 0.5vw 1.5vw;
+  border-radius: 0.5vw;
+  font-size: 3vw;
   outline: 0;
   border: 0; 
   text-transform: uppercase;
   display: block;
   margin: auto;
   cursor: pointer;
-  box-shadow: 0px 2px 2px lightgray;
+  box-shadow: 0vw 2vw 2vw lightgray;
   transition: ease background-color 250ms;
+  margin-bottom: 3vw;
+  margin-top: 4vw;
+
   &:hover {
     background-color: ${(props) => theme[props.theme].hover};
   }
@@ -78,6 +83,7 @@ const StyledButton = styled.button`
   color: white;
   border: none;
   border-radius: 50%;
+  box-shadow: 0vw 1vw 1vw lightgray;
   cursor: pointer;
   font-size: 16px;
   margin-left: 2.5vw;
@@ -133,6 +139,7 @@ const headingStyle = {
   marginBottom: "10vw",
   fontStyle: "normal",
   textAlign: "center",
+  textShadow: "0vw 1vw 1vw lightgray",
   color: theme.darkchorated.default, 
   fontWeight:"bold",
   fontSize:"6vw"}
@@ -146,6 +153,28 @@ const fancyFont = {
   color: theme.darkchorated.default,
 }
 
+const formStyle = {
+  padding: '2vw',
+  backgroundColor: '#f9f9f9',
+  borderRadius: '0.8vw',
+  width: '70vw',
+  margin: '0 auto',
+  fontFamily: "Mulish",
+  fontSize: '3vw',
+  color: theme.darkchorated.default
+};
+
+const inputStyle = {
+  padding: '0 w',
+  marginBottom: '2vw',
+  marginLeft: '1vw',
+  margin: '0 0',
+  border: '1px solid #ccc',
+  borderRadius: '0.3vw',
+  width: '50vw',
+
+};
+
 const casualFont = {
   fontFamily: "Mulish",
   fontWeight: 40,
@@ -157,11 +186,11 @@ const casualFont = {
 
 
 const iconoStyle = {
-width : "8%",
-  // width : "35px",
-  height: "auto",
+  // width : "8%",
+  marginTop: "3vw", //de la pagina
+  marginBottom: "3vw", //de la pagina
+  // height: "auto",
   margin: "auto",
-  marginBottom: "1px",
   color: theme.darkchorated.default,
 }
 
@@ -188,7 +217,7 @@ const IndexPage = () => {
     name: '',
     email: '',
     message: '',
-    gender: 'male',
+    transporte: 'no',
   });
 
   const handleChange = (e) => {
@@ -273,67 +302,76 @@ const IndexPage = () => {
        <br/>
        para comer, bailar y disfrutar </p>
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
-      <div style={{width: "100vw", height:"70vw",position: 'relative', background: "#964742"}}>
-        <p style={{...headingStyle, color:theme.chorated.default}} id="RegalosSection"> REGALOS</p>
+      <div style={{width: "100vw", height:"88vw",position: 'relative', background: "#964742"}}>
+        <p style={{...headingStyle, color:theme.chorated.default,  textShadow: "0vw 0.5vw 0.5vw #4c4545"}} id="RegalosSection"> <br/> REGALOS</p>
         <div style={{...paragraphStyles, color:theme.chorated.default, textAlign: 'center'}}>Tu presencia es nuestro regalo.<br/><br/>Pero si queres contribuir a los <br/> costos del festejo  </div>
-        <div style={{width:'50vw', top: "50vw", textAlign:'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish',fontWeight: '3vw'}}>
-          <img style={{...iconoStyle, width: '5vw',magin:'auto'}} src={iconoArgentina} alt="icono argentina"/>
+        <div style={{width:'50vw', top: "54vw", textAlign:'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish',fontWeight: '3vw'}}>
+          <img style={{...iconoStyle, width: '7vw',magin:'auto'}} src={iconoArgentina} alt="icono argentina"/>
           Desde Argentina por Mercado Pago<br/>alias: ...<br/>CBU: ....<br/>
         </div>
-        <div style={{width: '50vw', left: '50vw', textAlign:'center', top: "50vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word'}}> 
-          <img style={{...iconoStyle, width: '5vw',magin:'auto'}} src={iconoMundo} alt="icono mundo" />
+        <div style={{width: '50vw', left: '50vw', textAlign:'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word'}}> 
+          <img style={{...iconoStyle, width: '7vw',magin:'auto'}} src={iconoMundo} alt="icono mundo" />
           Desde el exterior usando PayPal<br/> link <br/>
         </div>
-        <div style={{width: "20vw", height: 0, left: '50vw', top: '66vw', position: 'absolute', transform: 'rotate(-90deg)', transformOrigin: '0 0', border: '0.02vw #F1F1F1 solid'}}></div>
+        <div style={{width: "18vw", height: 0, left: '50vw', top: '77vw', position: 'absolute', transform: 'rotate(-90deg)', transformOrigin: '0 0', border: '0.02vw #F1F1F1 solid'}}></div>
         
         
       </div>
       {/* RSVP */}
       <p style={headingStyle} id="RSVPSection"> CONFIRMAR ASISTENCIA </p>
 
-      <form onSubmit={handleSubmit}>
+      <form style={formStyle} onSubmit={handleSubmit}>
         <label>
-          Name:
+          Nombre y Apellido
+          <br/>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            style={inputStyle}
           />
         </label>
         <br />
         <label>
-          Email:
+          Email
+          <br/>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            style={inputStyle}
           />
         </label>
         <br />
         <label>
-          Message:
+          Mensaje
+          <br/>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
+            style={inputStyle}
           />
         </label>
         <br />
         <label>
-          Gender:
+        ¿Vas a necesitar transporte <br/>desde capital?
+          <br/>
           <select
-            name="gender"
-            value={formData.gender}
+            name="transporte"
+            value={formData.transporte}
             onChange={handleChange}
+            style={inputStyle}
           >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="No">No</option>
+            <option value="Si">Si</option>
+            <option value="Aun nose">Aun nose</option>
           </select>
         </label>
         <br />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Enviar</Button>
       </form>
 
       {/* From Figma */}

@@ -12,6 +12,8 @@ import iconoRSVP from "../images/envelope_chorated.svg";
 import iconoArgentina from "../images/ArgentinaBandera.svg";
 import iconoMundo from "../images/earth-africa1.svg";
 
+// Change before deploying
+const backendURL = "http://localhost:8080/" 
 
 const theme = {
   blue: {
@@ -228,9 +230,19 @@ const IndexPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const response = await fetch(backendURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+  
+    const data = await response.json();
+
     console.log('Form submitted:', formData);
+    console.log('Server reply:', data);
   };
 
   const scrollToSection = (id) => {

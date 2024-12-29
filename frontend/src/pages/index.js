@@ -161,10 +161,12 @@ const formStyle = {
   margin: '0 auto',
   fontFamily: "Mulish",
   fontSize: '3vw',
+  textAlign: 'justify',      // Justify the text inside the form
   color: theme.darkchorated.default
 };
 
 const inputStyle = {
+ // Space between input and button
   padding: '0 w',
   marginBottom: '2vw',
   marginLeft: '1vw',
@@ -174,6 +176,20 @@ const inputStyle = {
   width: '50vw',
 
 };
+
+
+const labelStyle= {
+  // Space between input and button
+  //  padding: '0 w',
+   marginLeft: '8vw',
+   fontWeight: "bold", 
+   marginTop:'3vw',
+ };
+
+const inputContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center', // Center the inputs horizontally
+ };
 
 const casualFont = {
   fontFamily: "Mulish",
@@ -188,17 +204,21 @@ const casualFont = {
 const iconoStyle = {
   // width : "8%",
   marginTop: "3vw", //de la pagina
-  marginBottom: "3vw", //de la pagina
+  marginBottom: "4vw", //de la pagina
   // height: "auto",
-  margin: "auto",
+  marginLeft: "auto",
+  marginRight: "auto",
   color: theme.darkchorated.default,
 }
 
 const containerStyle = {
   position: 'relative',
-  textAlign: 'center',
-  color: 'white',
-};
+  // textAlign: 'center',
+  margin:'auto',
+  display: 'flex',
+  justifyContent: 'center', // Horizontal centering
+  alignItems: 'center',  
+  };
 
 
 const textStyle = {
@@ -242,7 +262,7 @@ const IndexPage = () => {
       {/* Collage Inicial */}
       <img src={nosotrosFoto} alt="Collage inicial" style={{width:"100vw", margin: "auto"}} />
       {/* nombres*/}
-      <div style={{...fancyFont, fontSize: "18vw", margin:'auto'}}>
+      <div style={{...fancyFont, fontSize: "18vw", margin:'auto',marginBottom:'10vw',marginTop:'10vw'}}>
         Diego y Sofi</div>
       {/* dia semana, fecha, hora */}
       {/* TODO: poner porcentajes en vez de valores absolutos */}
@@ -306,11 +326,11 @@ const IndexPage = () => {
         <p style={{...headingStyle, color:theme.chorated.default,  textShadow: "0vw 0.5vw 0.5vw #4c4545"}} id="RegalosSection"> <br/> REGALOS</p>
         <div style={{...paragraphStyles, color:theme.chorated.default, textAlign: 'center'}}>Tu presencia es nuestro regalo.<br/><br/>Pero si queres contribuir a los <br/> costos del festejo  </div>
         <div style={{width:'50vw', top: "54vw", textAlign:'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish',fontWeight: '3vw'}}>
-          <img style={{...iconoStyle, width: '7vw',magin:'auto'}} src={iconoArgentina} alt="icono argentina"/>
+          <img style={{...iconoStyle, width: '7vw'}} src={iconoArgentina} alt="icono argentina"/>
           Desde Argentina por Mercado Pago<br/>alias: ...<br/>CBU: ....<br/>
         </div>
         <div style={{width: '50vw', left: '50vw', textAlign:'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word'}}> 
-          <img style={{...iconoStyle, width: '7vw',magin:'auto'}} src={iconoMundo} alt="icono mundo" />
+          <img style={{...iconoStyle, width: '7vw'}} src={iconoMundo} alt="icono mundo" />
           Desde el exterior usando PayPal<br/> link <br/>
         </div>
         <div style={{width: "18vw", height: 0, left: '50vw', top: '77vw', position: 'absolute', transform: 'rotate(-90deg)', transformOrigin: '0 0', border: '0.02vw #F1F1F1 solid'}}></div>
@@ -319,61 +339,73 @@ const IndexPage = () => {
       </div>
       {/* RSVP */}
       <p style={headingStyle} id="RSVPSection"> CONFIRMAR ASISTENCIA </p>
-
+      <p style={{fontSize: "3vw", color: theme.darkchorated.default,fontWeight: '3vw', textAlign:'center', 
+        fontFamily: "Mulish",marginBottom:'10vw'}}>
+         Asegurate de completar una casilla por <br/>
+         invitado/a. Podés agregar invitados con el <br/>
+         botón ”+ invitado/a”  </p>
+      <div style={containerStyle}>
       <form style={formStyle} onSubmit={handleSubmit}>
-        <label>
-          Nombre y Apellido
-          <br/>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={inputStyle}
-          />
-        </label>
-        <br />
-        <label>
-          Email
-          <br/>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={inputStyle}
-          />
-        </label>
-        <br />
-        <label>
-          Mensaje
-          <br/>
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            style={inputStyle}
-          />
-        </label>
-        <br />
-        <label>
-        ¿Vas a necesitar transporte <br/>desde capital?
-          <br/>
-          <select
-            name="transporte"
-            value={formData.transporte}
-            onChange={handleChange}
-            style={inputStyle}
-          >
-            <option value="No">No</option>
-            <option value="Si">Si</option>
-            <option value="Aun nose">Aun nose</option>
+      <label style={{...labelStyle, display:'block'}}> Nombre y Apellido </label>
+       <div style={inputContainerStyle}>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+        </div>
+      <label style={{...labelStyle, display:'block'}}> Email </label>
+      <div style={inputContainerStyle}>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+    </div>
+    <label style={{...labelStyle, display:'block'}}>Confimación </label>
+      <div style={inputContainerStyle}>
+        <select
+          name="confirmacion"
+          value={formData.transporte}
+          onChange={handleChange}
+          style={inputStyle}
+        >
+          <option value="Si ">Si</option>
+          <option value="No voy a poder"> No voy a poder</option>
           </select>
-        </label>
-        <br />
-        <Button type="submit">Enviar</Button>
-      </form>
-
+        </div>
+      <label style={{...labelStyle, display:'block', marginLeft: '8vw'}}>¿Vas a necesitar transporte<br/> desde CABA?</label>
+      <div style={inputContainerStyle}>
+        <select
+          name="transporte"
+          value={formData.transporte}
+          onChange={handleChange}
+          style={inputStyle}
+        >
+          <option value="No">No</option>
+          <option value="Si">Si</option>
+          <option value="Aun nose">Aun nose</option>
+        </select>
+        </div>
+        <label style={{...labelStyle, display:'block'}}> Mensaje </label>
+        <div style={inputContainerStyle}>
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          style={inputStyle}
+        />
+      </div>
+      <br />
+      <Button type="submit">+ Invitado/a</Button>
+    </form>
+    </div>
+    <Button type="submit">Enviar</Button>
+    <br />
       {/* From Figma */}
       {/* <div style={{width: 1440, height: 8177, position: 'relative', background: '#F1F1F1'}}>
         <div style={{left: 269, top: 0, position: 'absolute', color: '#535353', fontSize: 207, fontFamily: 'Rouge Script', fontWeight: '400', lineHeight: 310.50, wordWrap: 'break-word'}}>Nos Casamos</div>

@@ -187,7 +187,9 @@ const labelStyle= {
  };
 
 const inputContainerStyle = {
-  display: 'flex',
+  // display: 'flex',
+  marginLeft: '8vw',
+   display: 'block',
   justifyContent: 'center', // Center the inputs horizontally
  };
 
@@ -214,8 +216,10 @@ const iconoStyle = {
 const containerStyle = {
   position: 'relative',
   // textAlign: 'center',
-  margin:'auto',
-  display: 'flex',
+ // margin:'auto',
+  // display: 'flex',
+   marginLeft: '8vw',
+   display: 'block',
   justifyContent: 'center', // Horizontal centering
   alignItems: 'center',  
   };
@@ -233,12 +237,13 @@ const textStyle = {
 };
 
 const IndexPage = () => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = React.useState([{
     name: '',
     email: '',
+    confirmacion:'',
     message: '',
     transporte: 'no',
-  });
+  }]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -256,6 +261,22 @@ const IndexPage = () => {
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const handleInputChange = (index, field, value) => {
+    // Create a copy of the current forms array.
+    const updatedForms = [...formData];
+    
+    // Update the specific form at the index.
+    updatedForms[index] = { ...updatedForms[index], [field]: value };
+
+    // Update the state with the modified forms array.
+    setFormData(updatedForms);
+  };
+
+  const handleAddForm = () => {
+    setFormData([...formData, { name: '', email: '' }]); // Add a new form object.
+  };
+
 
   return (
     <main style={{...pageStyles, margin:'auto'}}>
@@ -345,14 +366,17 @@ const IndexPage = () => {
          invitado/a. Podés agregar invitados con el <br/>
          botón ”+ invitado/a”  </p>
       <div style={containerStyle}>
-      <form style={formStyle} onSubmit={handleSubmit}>
+      {formData.map((formData2, index) => (
+      <form style={{...formStyle, clear: 'both' }} onSubmit={handleSubmit}>
       <label style={{...labelStyle, display:'block'}}> Nombre y Apellido </label>
        <div style={inputContainerStyle}>
         <input
           type="text"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          value={formData2.name}
+          display='block'
+          // onChange={handleChange}
+          onChange={(e) => handleInputChange(index, 'name', e.target.value)}
           style={inputStyle}
         />
         </div>
@@ -361,18 +385,20 @@ const IndexPage = () => {
         <input
           type="email"
           name="email"
-          value={formData.email}
-          onChange={handleChange}
+          value={formData2.email}
+          onChange={(e) => handleInputChange(index, 'email', e.target.value)}
           style={inputStyle}
+          display='block'
         />
     </div>
     <label style={{...labelStyle, display:'block'}}>Confimación </label>
       <div style={inputContainerStyle}>
         <select
           name="confirmacion"
-          value={formData.transporte}
-          onChange={handleChange}
+          value={formData2.confirmacion}
+          onChange={(e) => handleInputChange(index, 'confirmacion', e.target.value)}
           style={inputStyle}
+          display='block'
         >
           <option value="Si ">Si</option>
           <option value="No voy a poder"> No voy a poder</option>
@@ -382,9 +408,10 @@ const IndexPage = () => {
       <div style={inputContainerStyle}>
         <select
           name="transporte"
-          value={formData.transporte}
-          onChange={handleChange}
+          value={formData2.transporte}
+          onChange={(e) => handleInputChange(index, 'transporte', e.target.value)}
           style={inputStyle}
+          display='block'
         >
           <option value="No">No</option>
           <option value="Si">Si</option>
@@ -395,194 +422,20 @@ const IndexPage = () => {
         <div style={inputContainerStyle}>
         <textarea
           name="message"
-          value={formData.message}
-          onChange={handleChange}
+          value={formData2.message}
+          onChange={(e) => handleInputChange(index, 'message', e.target.value)}
           style={inputStyle}
+          display='block'
         />
+        <br />
       </div>
       <br />
-      <Button type="submit">+ Invitado/a</Button>
-    </form>
+     </form>))}
     </div>
+    <Button onClick={handleAddForm} style={{marginRight: '10vw'}}>+ Invitado/a</Button>
     <Button type="submit">Enviar</Button>
     <br />
-      {/* From Figma */}
-      {/* <div style={{width: 1440, height: 8177, position: 'relative', background: '#F1F1F1'}}>
-        <div style={{left: 269, top: 0, position: 'absolute', color: '#535353', fontSize: 207, fontFamily: 'Rouge Script', fontWeight: '400', lineHeight: 310.50, wordWrap: 'break-word'}}>Nos Casamos</div>
-        <div style={{left: 404, top: 7893, position: 'absolute', color: '#535353', fontSize: 207, fontFamily: 'Rouge Script', fontWeight: '400', lineHeight: 310.50, wordWrap: 'break-word'}}>Te esperamos</div>
-        <div style={{width: 670, left: 376, top: 3025, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>Queremos que seas parte  de este momento tan especial </div>
-        <div style={{width: 670, left: 400, top: 3906, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '700', wordWrap: 'break-word'}}>DÓNDE</div>
-        <img style={{width: 1118, height: 1153, left: 178, top: 349, position: 'absolute', borderRadius: 101}} src="https://via.placeholder.com/1118x1153" />
-        <div style={{width: 189, height: 182, left: 772, top: 3281, position: 'absolute', background: '#964742', borderRadius: 9999}} />
-        <div style={{width: 189, height: 182, left: 491, top: 3274, position: 'absolute', background: '#964742', borderRadius: 9999}} />
-        <div style={{width: 189, height: 182, left: 213, top: 3274, position: 'absolute', background: '#964742', borderRadius: 9999}} />
-        <div style={{width: 189, height: 182, left: 1042, top: 3281, position: 'absolute', background: '#964742', borderRadius: 9999}} />
-        <div style={{width: 91, height: 91, left: 1089, top: 3326, position: 'absolute'}}>
-          <div style={{width: 91, height: 91, left: 0, top: 0, position: 'absolute', background: '#F1F1F1'}}></div>
-        </div>
-        <div style={{width: 91, height: 91, left: 821, top: 3326, position: 'absolute'}}>
-          <div style={{width: 91, height: 91, left: 0, top: 0, position: 'absolute', background: '#F1F1F1'}}></div>
-        </div>
-        <div style={{width: 91, height: 91, left: 540, top: 3319, position: 'absolute'}}>
-          <div style={{width: 91, height: 91, left: 0, top: 0, position: 'absolute', background: '#F1F1F1'}}></div>
-        </div>
-        <div style={{width: 91, height: 91, left: 262, top: 3319, position: 'absolute'}}>
-          <div style={{width: 75.83, height: 91, left: 7.58, top: 0, position: 'absolute', background: '#F1F1F1'}}></div>
-          <div style={{width: 30.33, height: 30.33, left: 30.33, top: 22.75, position: 'absolute', background: '#F1F1F1'}}></div>
-        </div>
-        <div style={{width: 297, height: 107, left: 308, top: 2602, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>SÁBADO</div>
-        <div style={{width: 297, height: 107, left: 552, top: 2512, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>MAYO</div>
-        <div style={{width: 297, height: 107, left: 552, top: 2709, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>2025</div>
-        <div style={{width: 290, height: 0, left: 312, top: 2592, position: 'absolute', background: '#535353', border: '2.50px #535353 solid'}}></div>
-        <div style={{width: 290, height: 0, left: 312, top: 2682, position: 'absolute', background: '#535353', border: '2.50px #535353 solid'}}></div>
-        <div style={{width: 297, height: 107, left: 791, top: 2601, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>A LAS 11HS</div>
-        <div style={{width: 290, height: 0, left: 795, top: 2591, position: 'absolute', background: '#535353', border: '2.50px #535353 solid'}}></div>
-        <div style={{width: 290, height: 0, left: 795, top: 2682, position: 'absolute', background: '#535353', border: '2.50px #535353 solid'}}></div>
-        <div style={{width: 149, height: 96, left: 626, top: 2560, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 120, fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word'}}>3</div>
-        <div style={{left: 386, top: 2744, position: 'absolute', color: '#535353', fontSize: 160, fontFamily: 'Rouge Script', fontWeight: '400', lineHeight: 240, wordWrap: 'break-word'}}>Diego y Sofi</div>
-        <div style={{width: 389, height: 64, left: 540, top: 4282, position: 'absolute', background: '#964742', borderRadius: 8, overflow: 'hidden'}}>
-          <div style={{left: 57, top: 8, position: 'absolute', color: 'white', fontSize: 35, fontFamily: 'Mulish', fontWeight: '600', lineHeight: 45.50, wordWrap: 'break-word'}}>VER UBICACIÓN</div>
-        </div>
-        <div style={{width: 670, left: 413, top: 3961, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '300', wordWrap: 'break-word'}}><br/>Quinta P.L. B. Verazzi 1668,<br/>Pilar, Provincia de Buenos Aires, Argentina</div>
-        <div style={{width: 1440, height: 883, left: 0, top: 6700, position: 'absolute', background: '#F1F1F1', borderRadius: 45, overflow: 'hidden', border: '5px #F1F1F1 solid'}}>
-          <div style={{width: 1316, height: 156, left: 70, top: 63, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', color: '#1E1E1E', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 67.20, wordWrap: 'break-word'}}>Nombre y Apellido</div>
-            <div style={{alignSelf: 'stretch', flex: '1 1 0', paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12, background: 'white', borderRadius: 8, overflow: 'hidden', border: '1px #D9D9D9 solid', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-              <div style={{flex: '1 1 0', alignSelf: 'stretch', color: '#B3B3B3', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 48, wordWrap: 'break-word'}}>Nombre</div>
-            </div>
-          </div>
-          <div style={{width: 1316, height: 156, left: 103, top: 781, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}} />
-          <div style={{width: 1316, height: 156, left: 73, top: 231, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', color: '#1E1E1E', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 67.20, wordWrap: 'break-word'}}>Email</div>
-            <div style={{alignSelf: 'stretch', flex: '1 1 0', paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12, background: 'white', borderRadius: 8, overflow: 'hidden', border: '1px #D9D9D9 solid', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-              <div style={{flex: '1 1 0', alignSelf: 'stretch', color: '#B3B3B3', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 48, wordWrap: 'break-word'}}>Email</div>
-            </div>
-          </div>
-          <div style={{width: 1316, height: 156, left: 73, top: 399, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', color: '#1E1E1E', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 67.20, wordWrap: 'break-word'}}>Confimación </div>
-            <div style={{alignSelf: 'stretch', flex: '1 1 0', paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12, background: 'white', borderRadius: 8, overflow: 'hidden', border: '1px #D9D9D9 solid', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-              <div style={{flex: '1 1 0', alignSelf: 'stretch'}}></div>
-            </div>
-          </div>
-          <div style={{width: 1313, height: 265, left: 71, top: 555, position: 'absolute', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', gap: 8, display: 'inline-flex'}}>
-            <div style={{alignSelf: 'stretch', color: '#1E1E1E', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 67.20, wordWrap: 'break-word'}}>Mensaje</div>
-            <div style={{alignSelf: 'stretch', flex: '1 1 0', paddingLeft: 16, paddingRight: 16, paddingTop: 12, paddingBottom: 12, background: 'white', borderRadius: 8, overflow: 'hidden', border: '1px #D9D9D9 solid', justifyContent: 'flex-start', alignItems: 'center', display: 'inline-flex'}}>
-              <div style={{flex: '1 1 0', alignSelf: 'stretch', color: '#B3B3B3', fontSize: 48, fontFamily: 'Mulish', fontWeight: '400', lineHeight: 48, wordWrap: 'break-word'}}>Mensaje</div>
-            </div>
-          </div>
-          <div style={{width: 66, height: 66, left: 1307, top: 486, position: 'absolute'}}>
-            <div style={{width: 27.50, height: 13.75, left: 19.25, top: 27.50, position: 'absolute', background: '#535353'}}></div>
-          </div>
-        </div>
-        <div style={{width: 670, left: 400, top: 4812, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '700', wordWrap: 'break-word'}}>CÓDIGO DE VESTIMENTA</div>
-        <div style={{width: 670, height: 276, left: 385, top: 4842, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '300', wordWrap: 'break-word'}}><br/>Vení con lo que quieras!<br/>Sentite libre de elegir lo que te haga sentir más cómodo/a para comer, bailar y disfrutar </div>
-        <div style={{width: 670, left: 418, top: 6455, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 48, fontFamily: 'Mulish', fontWeight: '700', wordWrap: 'break-word'}}>CONFIRMAR ASISTENCIA</div>
-        <div style={{width: 389, height: 64, left: 611, top: 7771, position: 'absolute', background: '#964742', borderRadius: 8, overflow: 'hidden'}}>
-          <div style={{left: 131, top: 8, position: 'absolute', color: 'white', fontSize: 35, fontFamily: 'Mulish', fontWeight: '600', lineHeight: 45.50, wordWrap: 'break-word'}}>ENVIAR</div>
-        </div>
-        <div style={{width: 389, height: 64, left: 1000, top: 7583, position: 'absolute', background: '#964742', borderRadius: 8, overflow: 'hidden'}}>
-          <div style={{left: 99, top: 9, position: 'absolute', color: 'white', fontSize: 35, fontFamily: 'Mulish', fontWeight: '600', lineHeight: 45.50, wordWrap: 'break-word'}}> INVITADO/A</div>
-          <div style={{left: 70, top: -3, position: 'absolute', color: 'white', fontSize: 47, fontFamily: 'Mulish', fontWeight: '700', lineHeight: 61.10, wordWrap: 'break-word'}}>+</div>
-        </div>
-        <div style={{width: 750, height: 149, left: 379, top: 6545, position: 'absolute', textAlign: 'center', color: '#535353', fontSize: 35, fontFamily: 'Mulish', fontWeight: '300', wordWrap: 'break-word'}}>Asegurate de completar una casilla por invitado/a. Podés agregar invitados con el botón ”+ invitado/a” </div>
-        <div style={{width: 109, height: 46, left: 295, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 404, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 321, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 949, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1058, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 975, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1276, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1193, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1167, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1084, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 866, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 731, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 840, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 757, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 648, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 513, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 622, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 539, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 430, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 295, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 404, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 321, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 949, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1058, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 975, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1276, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1193, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1167, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1084, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 866, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 731, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 840, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 757, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 648, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 513, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 622, top: 4583, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 539, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 430, top: 4560, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 299, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 408, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 325, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 953, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1062, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 979, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1280, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1197, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1171, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1088, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 870, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 735, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 844, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 761, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 652, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 517, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 626, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 543, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 434, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 299, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 408, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 325, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 953, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1062, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 979, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1280, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1197, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 1171, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 1088, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 870, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 735, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 844, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 761, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 652, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 517, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 109, height: 46, left: 626, top: 3757, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 543, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 51, height: 23, left: 434, top: 3734, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-        <div style={{width: 1045.50, height: 44.11, left: 190, top: 3623, position: 'absolute'}}>
-          <div style={{width: 222, height: 43.11, left: 624, top: 44.11, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-          <div style={{width: 222, height: 43.11, left: 584, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 222, height: 43.11, left: 222, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 893, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 775, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 0, top: 44.11, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 109, top: 44.11, position: 'absolute', border: '5px #964742 solid'}}></div>
-        </div>
-        <div style={{width: 1045.50, height: 44.11, left: 185, top: 4626, position: 'absolute'}}>
-          <div style={{width: 222, height: 43.11, left: 624, top: 44.11, position: 'absolute', transform: 'rotate(-180deg)', transformOrigin: '0 0', border: '5px #964742 solid'}}></div>
-          <div style={{width: 222, height: 43.11, left: 584, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 222, height: 43.11, left: 222, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 893, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 775, top: 0, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 0, top: 44.11, position: 'absolute', border: '5px #964742 solid'}}></div>
-          <div style={{width: 152.50, height: 43.11, left: 109, top: 44.11, position: 'absolute', border: '5px #964742 solid'}}></div>
-        </div>
-        <div style={{left: 485, top: 8171, position: 'absolute', color: '#535353', fontSize: 140, fontFamily: 'Rouge Script', fontWeight: '400', lineHeight: 210, wordWrap: 'break-word'}}>Diego y Sofi</div>
-        <img style={{width: 504, height: 822, left: 151, top: 1561, position: 'absolute', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25) inset', borderRadius: 58, border: '1px rgba(0, 0, 0, 0) solid'}} src={nosotrosFoto} />
-        <img style={{width: 604, height: 832, left: 705, top: 1551, position: 'absolute', borderRadius: 75}} src="https://via.placeholder.com/604x832" />
-      </div> */}
+   
     </main>
   )
 }

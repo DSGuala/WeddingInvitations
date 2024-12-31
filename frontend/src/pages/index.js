@@ -11,9 +11,10 @@ import iconoBoxJart from "../images/box-heart_chorated.svg";
 import iconoRSVP from "../images/envelope_chorated.svg";
 import iconoArgentina from "../images/ArgentinaBandera.svg";
 import iconoMundo from "../images/earth-africa1.svg";
-
+  
 // Change before deploying
 const backendURL = "http://localhost:8080/" 
+backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
 
 const theme = {
   blue: {

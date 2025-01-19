@@ -12,6 +12,8 @@ import iconoRSVP from "../images/envelope_chorated.svg";
 import iconoArgentina from "../images/ArgentinaBandera.svg";
 import iconoMundo from "../images/earth-africa1.svg";
 
+import { withPrefix } from "gatsby";
+
 // Change before deploying
 let backendURL = "http://localhost:8080/"
 // backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
@@ -422,7 +424,7 @@ const IndexPage = () => {
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
-      <img src={nosotrosFoto} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
+      <img src={withPrefix(nosotrosFoto)} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
       {/* nombres*/}
       <div style={{ ...fancyFont, fontSize: "18vw", margin: 'auto', marginBottom: '10vw', marginTop: '10vw' }}>
         Diego y Sofi</div>
@@ -450,16 +452,16 @@ const IndexPage = () => {
         {/* <ButtonRedondo><img src={iconoUbicacion} style={{...iconoStyle, width:"100%"}} alt='boton_lugar'></img></ButtonRedondo>
         <ButtonRedondo>A</ButtonRedondo> */}
         <StyledButton onClick={() => scrollToSection("DondeSection")}>
-          <img src={iconoUbicacion} alt='boton_lugar'></img>
+          <img src={withPrefix(iconoUbicacion)} alt='boton_lugar'></img>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("VestimentaSection")}>
-          <img src={iconoTShirt} alt='boton_codigo_vestimenta'></img>
+          <img src={withPrefix(iconoTShirt)} alt='boton_codigo_vestimenta'></img>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("RegalosSection")}>
-          <img src={iconoBoxJart} alt='boton_regalos'></img>
+          <img src={withPrefix(iconoBoxJart)} alt='boton_regalos'></img>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("RSVPSection")}>
-          <img src={iconoRSVP} alt='boton_rsvp'></img>
+          <img src={withPrefix(iconoRSVP)} alt='boton_rsvp'></img>
         </StyledButton>
       </div>
 

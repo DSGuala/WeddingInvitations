@@ -310,7 +310,6 @@ const IndexPage = () => {
     e.target.remove();
   };
 
-
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
@@ -368,7 +367,7 @@ const IndexPage = () => {
       <br/> */}
       {/* codigo de vestimenta */}
       <p style={headingStyle} id="VestimentaSection"> CÓDIGO DE VESTIMENTA</p>
-      <p style={paragraphStyles}> Es lindo aprovechar ocaciones como estas para ponernos lindos y coquetos. 
+      <p style={paragraphStyles}> Esta bueno aprovechar ocaciones como estas para ponernos lindos y coquetos. 
         <br/>
         <br/>
       Venite con lo que te haga sentir más lindo/a,

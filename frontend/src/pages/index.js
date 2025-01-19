@@ -84,6 +84,35 @@ Button.defaultProps = {
   theme: "teagreen",
 };
 
+const Button2 = styled.button`
+  background-color: white;
+  color: ${(props) => theme['teagreen'].default};
+  padding: 0.5vw 1.5vw;
+  border-radius: 0.5vw;
+  font-size: 2.5vw;
+  outline: 0;
+  border: 0; 
+  text-transform: uppercase;
+  display: block;
+  margin: auto;
+  fontWeight: "bold",
+  cursor: pointer;
+  transition: ease background-color 250ms;
+  margin-bottom: 3vw;
+  margin-top: 4vw;
+
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+Button2.defaultProps = {
+  theme: "beige",
+};
 const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
@@ -319,9 +348,27 @@ const IndexPage = () => {
     return (
       <div style={overlayStyle}>
         <div style={modalStyle}>
-          <h2>Modal Title</h2>
-          <p>This is the modal content.</p>
-          <Button onClick={onClose}>Close Modal</Button>
+          <h2  style={paragraphStyles}>Mercado pago</h2>
+          <p  style={paragraphStyles}>Alias: geo.dirige.izo.mp</p>
+          <Button onClick={onClose}>Volver</Button>
+        </div>
+      </div>
+    );
+  }
+
+  
+  const [isModalOpen2, setIsModalOpen2] = React.useState(false);
+
+  const openModal2 = () => setIsModalOpen2(true);
+  const closeModal2 = () => setIsModalOpen2(false);
+
+  function ModaPaypal({ onClose }) {
+    return (
+      <div style={overlayStyle}>
+        <div style={modalStyle}>
+          <h2  style={paragraphStyles}>PayPal</h2>
+          <p  style={paragraphStyles}>link: here</p>
+          <Button onClick={onClose}>Volver</Button>
         </div>
       </div>
     );
@@ -417,11 +464,19 @@ const IndexPage = () => {
         <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si queres contribuir a los <br /> costos del festejo  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw' }}>
           <img style={{ ...iconoStyle, width: '7vw' }} src={iconoArgentina} alt="icono argentina" />
-          Desde Argentina por Mercado Pago<br />alias: ...<br />CBU: ....<br />
+          Desde Argentina por Mercado Pago
+          <div>
+         <Button2 onClick={openModal}>Detalles</Button2>
+         {isModalOpen && <Modal onClose={closeModal} />}
+          </div>
         </div>
         <div style={{ width: '50vw', left: '50vw', textAlign: 'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word' }}>
           <img style={{ ...iconoStyle, width: '7vw' }} src={iconoMundo} alt="icono mundo" />
-          Desde el exterior usando PayPal<br /> link <br />
+          Desde el exterior usando PayPal
+          <div>
+         <Button2 onClick={openModal2}>Detalles</Button2>
+         {isModalOpen2 && <ModaPaypal onClose={closeModal2} />}
+          </div>
         </div>
         <div style={{ width: "18vw", height: 0, left: '50vw', top: '77vw', position: 'absolute', transform: 'rotate(-90deg)', transformOrigin: '0 0', border: '0.02vw #F1F1F1 solid' }}></div>
 
@@ -501,10 +556,7 @@ const IndexPage = () => {
       </div>
       <Button type="submit" onClick={handleSubmit}>Enviar</Button>
       <br />
-      <div>
-      <Button onClick={openModal}>Open Modal</Button>
-      {isModalOpen && <Modal onClose={closeModal} />}
-      </div>
+     
     </main>
   )
 }

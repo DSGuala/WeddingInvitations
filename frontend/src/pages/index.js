@@ -490,8 +490,8 @@ const IndexPage = () => {
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
         <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si queres contribuir a los <br /> costos del festejo  </div>
-        <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw' }}>
-          <StaticImage style={{ ...iconoStyle, width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
+        <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw'}}>
+          <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
           Desde Argentina por Mercado Pago
           <div>
          <Button2 onClick={openModal}>Detalles</Button2>
@@ -499,7 +499,7 @@ const IndexPage = () => {
           </div>
         </div>
         <div style={{ width: '50vw', left: '50vw', textAlign: 'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word' }}>
-          <StaticImage style={{ ...iconoStyle, width: '7vw' }} src={"../images/earth-africa1.svg"} alt="icono mundo" />
+          <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/earth-africa1.svg"} alt="icono mundo" />
           Desde el exterior usando PayPal
           <div>
          <Button2 onClick={openModal2}>Detalles</Button2>
@@ -580,11 +580,13 @@ const IndexPage = () => {
             </label>
             <Button onClick={handleAddForm} style={{ marginRight: '10vw' }}>+ Invitado/a</Button>
           </form>))}
-       </div >
-      <div>
+          <div>
          <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
          {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
           </div>
+          <br/>
+       </div >
+      
           
      
     </main>

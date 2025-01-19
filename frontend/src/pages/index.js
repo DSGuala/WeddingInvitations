@@ -468,7 +468,7 @@ const IndexPage = () => {
       </div>
 
       {/* direccion */}
-      <p style={headingStyle} id='DondeSection'>DONDE</p>
+      <p style={headingStyle} id='DondeSection'>DÓNDE</p>
       <p style={paragraphStyles}> Quinta P.L.
         B. Verazzi 1668,
         <br />
@@ -480,7 +480,7 @@ const IndexPage = () => {
       <br/> */}
       {/* codigo de vestimenta */}
       <p style={headingStyle} id="VestimentaSection"> CÓDIGO DE VESTIMENTA</p>
-      <p style={paragraphStyles}> Esta bueno aprovechar ocaciones como estas para ponernos lindos y coquetos. 
+      <p style={paragraphStyles}> Está bueno aprovechar ocasiones como estas para ponernos lindos y coquetos. 
         <br/>
         <br/>
       Venite con lo que te haga sentir más lindo/a,

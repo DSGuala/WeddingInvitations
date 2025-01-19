@@ -405,13 +405,12 @@ const IndexPage = () => {
       <br/> */}
       {/* codigo de vestimenta */}
       <p style={headingStyle} id="VestimentaSection"> CÓDIGO DE VESTIMENTA</p>
-      <p style={paragraphStyles}>Vení con lo que quieras!
-        <br />
-        Sentite libre de elegir lo que te
-        <br />
-        haga sentir más cómodo/a
-        <br />
-        para comer, bailar y disfrutar </p>
+      <p style={paragraphStyles}> Es lindo aprovechar ocaciones como estas para ponernos lindos y coquetos. 
+        <br/>
+        <br/>
+      Venite con lo que te haga sentir más lindo/a,
+       <br/>
+       pero sobre todo cómodo/a para comer, bailar y disfrutar </p>
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>

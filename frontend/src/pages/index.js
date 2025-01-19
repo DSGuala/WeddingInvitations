@@ -310,6 +310,44 @@ const IndexPage = () => {
     e.target.remove();
   };
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  function Modal({ onClose }) {
+    return (
+      <div style={overlayStyle}>
+        <div style={modalStyle}>
+          <h2>Modal Title</h2>
+          <p>This is the modal content.</p>
+          <Button onClick={onClose}>Close Modal</Button>
+        </div>
+      </div>
+    );
+  }
+  
+  const overlayStyle = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  };
+  
+  const modalStyle = {
+    backgroundColor: 'white',
+    padding: '20px',
+    borderRadius: '5px',
+    width: '300px',
+    textAlign: 'center',
+  };
+
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
@@ -463,7 +501,10 @@ const IndexPage = () => {
       </div>
       <Button type="submit" onClick={handleSubmit}>Enviar</Button>
       <br />
-
+      <div>
+      <Button onClick={openModal}>Open Modal</Button>
+      {isModalOpen && <Modal onClose={closeModal} />}
+      </div>
     </main>
   )
 }

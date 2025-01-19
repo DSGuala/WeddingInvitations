@@ -263,7 +263,7 @@ const containerStyle = {
   // textAlign: 'center',
   // margin:'auto',
   // display: 'flex',
-  marginLeft: '8vw',
+  margin: 'auto',
   display: 'block',
   justifyContent: 'center', // Horizontal centering
   alignItems: 'center',

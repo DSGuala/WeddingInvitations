@@ -36,7 +36,7 @@ const theme = {
   },
   beige: {
     default: "#e9edc9ff",
-    hover: "#bfc3a5"
+    hover:"#c2c2c2"
   },
   cornsilk: {
     default: "#fefae0ff",
@@ -115,6 +115,40 @@ const Button2 = styled.button`
 `;
 
 Button2.defaultProps = {
+  theme: "beige",
+};
+
+
+const Button3 = styled.button`
+  background-color: lightgrey;
+  color: ${(props) => theme['darkchorated'].default};
+  padding: 0vw 1.3vw;
+  border-radius: 3vw;
+  font-size: 2.5vw;
+  outline: 0;
+  border: 0 ; 
+  text-transform: uppercase;
+  // display: block;
+  //margin: auto;
+  fontWeight: "bold",
+  cursor: pointer;
+  transition: ease background-color 250ms;
+  //margin-bottom: 0vw;
+  margin-top: -20vw;
+  margin-left: 2vw;
+
+ 
+
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+Button3.defaultProps = {
   theme: "beige",
 };
 const StyledButton = styled.button`
@@ -269,6 +303,12 @@ const containerStyle = {
   alignItems: 'center',
 };
 
+const buttonContainer = {
+  display: 'flex',
+  gap: '10vw', /* Adds space between the buttons */
+  marginTop: '10vw', /* Adds space between the form and buttons */
+}
+
 const submitContainer= {
   display: 'flex',
   flexDirection: 'column',
@@ -303,6 +343,7 @@ const IndexPage = () => {
       [name]: value,
     });
   };
+  
 
   const [isModalOpen3, setIsModalOpen3] = React.useState(false);
   const closeModal3 = () => setIsModalOpen3(false);
@@ -361,7 +402,13 @@ const IndexPage = () => {
 
   const handleAddForm = (e) => {
     setFormData([...formData, { name: '', email: '' }]); // Add a new form object.
-    e.target.remove();
+    //e.target.remove();
+  };
+  
+  const removeForm = () => {
+    if (formData.length > 1) { // Prevent removing the last form if there's only one
+      setFormData(prevForms => prevForms.slice(0, prevForms.length - 1)); // Remove the last form
+    }
   };
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -399,6 +446,25 @@ const IndexPage = () => {
     );
   }
   
+  
+  const [isModalOpenDressCode, setIsModalOpenDressCode] = React.useState(false);
+
+  const openModalDressCode = () => setIsModalOpenDressCode(true);
+  const closeModalDressCode = () => setIsModalOpenDressCode(false);
+
+  function ModalDressCode({ onClose }) {
+    return (
+      <div style={overlayStyle}>
+        <div style={modalStyle}>
+          <h2  style={paragraphStyles}>Tratá de evitar:</h2>
+          <p  style={paragraphStyles}> - Ojotas/crocs  <br/>  - Bermudas/shorts  <br/>  - Remeras con gráficos 
+          <br/>  - Jean roto o muy gastado <br/>  -Buso con capucha <br/>  - Ropa deportiva
+          </p>
+          <Button onClick={onClose}>Volver</Button>
+        </div>
+      </div>
+    );
+  }
   const overlayStyle = {
     position: 'fixed',
     top: 0,
@@ -480,12 +546,16 @@ const IndexPage = () => {
       <br/> */}
       {/* codigo de vestimenta */}
       <p style={headingStyle} id="VestimentaSection"> CÓDIGO DE VESTIMENTA</p>
-      <p style={paragraphStyles}> Está bueno aprovechar ocasiones como estas para ponernos lindos y coquetos. 
+      <p style={paragraphStyles}> 
+        ELEGANTE SPORT  
+        <Button3 style={{fontWeight: "bold"  , position:'relative', top: '-0.5vw'}} onClick={openModalDressCode}>?</Button3>
+         {isModalOpenDressCode && <ModalDressCode onClose={closeModalDressCode} />}
         <br/>
         <br/>
-      Venite con lo que te haga sentir más lindo/a,
-       <br/>
-       pero sobre todo cómodo/a para comer, bailar y disfrutar </p>
+        Venite lindo/a y elegante
+        <br/>
+        pero sobretodo cómodo/a.
+        </p>
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
@@ -578,8 +648,17 @@ const IndexPage = () => {
               />
               <br />
             </label>
-            <Button onClick={handleAddForm} style={{ marginRight: '10vw' }}>+ Invitado/a</Button>
-          </form>))}
+            
+            <div style={buttonContainer}>
+            {index === formData.length - 1 && (
+              <Button onClick={handleAddForm} style={{ marginRight: '10vw' }}>+ Invitado/a</Button>          )}
+                 {index === formData.length - 1 && formData.length > 1 && (
+            <Button onClick={removeForm} style={{ marginLeft: '-10vw' }}>- Invitado/a</Button>
+            )} 
+            </div>     
+            </form>))}
+
+            
           <div>
          <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
          {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}

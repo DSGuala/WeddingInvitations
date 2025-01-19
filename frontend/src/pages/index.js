@@ -306,7 +306,7 @@ const containerStyle = {
 const buttonContainer = {
   display: 'flex',
   gap: '10vw', /* Adds space between the buttons */
-  marginTop: '10vw', /* Adds space between the form and buttons */
+  marginTop: '2vw', /* Adds space between the form and buttons */
 }
 
 const submitContainer= {
@@ -421,7 +421,7 @@ const IndexPage = () => {
       <div style={overlayStyle}>
         <div style={modalStyle}>
           <h2  style={paragraphStyles}>Mercado pago</h2>
-          <p  style={paragraphStyles}>Alias: geo.dirige.izo.mp</p>
+          <p  style={paragraphStyles}>Alias: casamiento.sofidiego</p>
           <Button onClick={onClose}>Volver</Button>
         </div>
       </div>
@@ -650,11 +650,12 @@ const IndexPage = () => {
             </label>
             
             <div style={buttonContainer}>
+            {index === formData.length - 1 && formData.length > 1 && (
+            <Button onClick={removeForm} style={{ marginLeft: '5vw' }}>- Invitado/a</Button>
+            )}
             {index === formData.length - 1 && (
-              <Button onClick={handleAddForm} style={{ marginRight: '10vw' }}>+ Invitado/a</Button>          )}
-                 {index === formData.length - 1 && formData.length > 1 && (
-            <Button onClick={removeForm} style={{ marginLeft: '-10vw' }}>- Invitado/a</Button>
-            )} 
+            <Button onClick={handleAddForm} style={{ marginRight: '5vw' }}>+ Invitado/a</Button> )}
+             
             </div>     
             </form>))}
 

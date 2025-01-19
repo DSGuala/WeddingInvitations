@@ -13,7 +13,13 @@ app.use(bodyParser.json());
 // remove this when deploying
 app.use(cors({origin: 'http://localhost:8000'}));
 
-mongoose.connect('mongodb+srv://gualad:Bodaro7!@cluster0.qwwuj.mongodb.net/wedding?retryWrites=true&w=majority&appName=WeddingInvites', {
+require('dotenv').config();
+
+const dbConnect = process.env.DB_LINK;
+
+console.log('Database password:', dbConnect);
+
+mongoose.connect(dbConnect, {
 })
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.error('Error connecting to MongoDB:', err));

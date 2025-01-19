@@ -265,6 +265,12 @@ const containerStyle = {
   alignItems: 'center',
 };
 
+const submitContainer= {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 const textStyle = {
   position: 'absolute',
@@ -294,9 +300,12 @@ const IndexPage = () => {
     });
   };
 
+  const [isModalOpen3, setIsModalOpen3] = React.useState(false);
+  const closeModal3 = () => setIsModalOpen3(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsModalOpen3(true);
     formData.forEach(async (invitado) => {
       const response = await fetch(backendURL, {
         method: "POST",
@@ -308,7 +317,19 @@ const IndexPage = () => {
       console.log('Server reply:', data);
     }
     )
-  };
+    };
+
+    function ModalSubmit({ onClose }) {
+      return (
+        <div style={overlayStyle}>
+          <div style={modalStyle}>
+            <h2  style={paragraphStyles}>Gracias!</h2>
+            <p  style={paragraphStyles}>Tu información ha sido enviada</p>
+            <Button onClick={onClose}>Volver</Button>
+          </div>
+        </div>
+      );
+    }
 
   const debugSubmit = async (e) => {
     e.preventDefault();
@@ -394,7 +415,10 @@ const IndexPage = () => {
     width: '300px',
     textAlign: 'center',
   };
+  
 
+ 
+ 
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
@@ -552,10 +576,12 @@ const IndexPage = () => {
             </label>
             <Button onClick={handleAddForm} style={{ marginRight: '10vw' }}>+ Invitado/a</Button>
           </form>))}
-      
-      </div>
-      <Button type="submit" onClick={handleSubmit}>Enviar</Button>
-      <br />
+       </div >
+      <div>
+         <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
+         {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
+          </div>
+          
      
     </main>
   )

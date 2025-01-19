@@ -1,5 +1,7 @@
 import * as React from "react"
 import styled from "styled-components";
+import { StaticImage } from "gatsby-plugin-image";
+
 import nosotrosFoto from "../images/HeroImage.png";
 // import iconoUbicacion from "../images/marker.svg";
 import iconoUbicacion from "../images/location_chorated.svg";
@@ -424,7 +426,7 @@ const IndexPage = () => {
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
-      <img src={withPrefix(nosotrosFoto)} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
+      <StaticImage src={"../images/HeroImage.png"} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
       {/* nombres*/}
       <div style={{ ...fancyFont, fontSize: "18vw", margin: 'auto', marginBottom: '10vw', marginTop: '10vw' }}>
         Diego y Sofi</div>
@@ -452,16 +454,16 @@ const IndexPage = () => {
         {/* <ButtonRedondo><img src={iconoUbicacion} style={{...iconoStyle, width:"100%"}} alt='boton_lugar'></img></ButtonRedondo>
         <ButtonRedondo>A</ButtonRedondo> */}
         <StyledButton onClick={() => scrollToSection("DondeSection")}>
-          <img src={withPrefix(iconoUbicacion)} alt='boton_lugar'></img>
+          <StaticImage src={"../images/location_chorated.svg"} alt='boton_lugar'/>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("VestimentaSection")}>
-          <img src={withPrefix(iconoTShirt)} alt='boton_codigo_vestimenta'></img>
+          <StaticImage src={"../images/tshirt_chorated.svg"} alt='boton_codigo_vestimenta'/>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("RegalosSection")}>
-          <img src={withPrefix(iconoBoxJart)} alt='boton_regalos'></img>
+          <StaticImage src={"../images/box-heart_chorated.svg"} alt='boton_regalos'/>
         </StyledButton>
         <StyledButton onClick={() => scrollToSection("RSVPSection")}>
-          <img src={withPrefix(iconoRSVP)} alt='boton_rsvp'></img>
+          <StaticImage src={"../images/envelope_chorated.svg"} alt='boton_rsvp'/>
         </StyledButton>
       </div>
 
@@ -489,7 +491,7 @@ const IndexPage = () => {
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
         <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si queres contribuir a los <br /> costos del festejo  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw' }}>
-          <img style={{ ...iconoStyle, width: '7vw' }} src={iconoArgentina} alt="icono argentina" />
+          <StaticImage style={{ ...iconoStyle, width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
           Desde Argentina por Mercado Pago
           <div>
          <Button2 onClick={openModal}>Detalles</Button2>
@@ -497,7 +499,7 @@ const IndexPage = () => {
           </div>
         </div>
         <div style={{ width: '50vw', left: '50vw', textAlign: 'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word' }}>
-          <img style={{ ...iconoStyle, width: '7vw' }} src={iconoMundo} alt="icono mundo" />
+          <StaticImage style={{ ...iconoStyle, width: '7vw' }} src={"../images/earth-africa1.svg"} alt="icono mundo" />
           Desde el exterior usando PayPal
           <div>
          <Button2 onClick={openModal2}>Detalles</Button2>

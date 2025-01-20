@@ -17,8 +17,6 @@ require('dotenv').config();
 
 const dbConnect = process.env.DB_LINK;
 
-console.log('Database password:', dbConnect);
-
 mongoose.connect(dbConnect, {
 })
   .then(() => console.log('Connected to MongoDB Atlas'))
@@ -49,7 +47,7 @@ app.post("/", async (req, res) => {
   console.log('received data', req.body);
   console.log('sending data to database');
   Replies.create(
-    { 'name': req.body.name, 'email':req.body.email, 'message':req.body.message, 'transporte':req.body.transporte, 'confirmacion':req.body.confirmacion});
+    { 'name': req.body.name, 'email':req.body.email, 'message':req.body.message, 'transporte':req.body.transporte, 'confirmacion':req.body.confirmacion, 'restricciones':req.body.restrictions});
 });
 
 app.get("/descargar", async (req, res) => {

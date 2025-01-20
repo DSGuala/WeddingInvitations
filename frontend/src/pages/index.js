@@ -504,7 +504,7 @@ const IndexPage = () => {
         <div style={{ width: "100vw", top: "20vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>2025</div>
         <div style={{ width: "30vw", left: "10vw", top: "9vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
         <div style={{ width: "30vw", left: "10vw", top: "18vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
-        <div style={{ width: "30vw", left: "60vw", top: "10vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>A LAS 12PM</div>
+        <div style={{ width: "30vw", left: "60vw", top: "10vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>12 PM</div>
         <div style={{ width: "30vw", left: "60vw", top: "9vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
         <div style={{ width: "30vw", left: "60vw", top: "18vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
         <div style={{ width: "100vw", top: "6vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "10vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>1</div>
@@ -643,6 +643,16 @@ const IndexPage = () => {
                 name="message"
                 value={formData2.message}
                 onChange={(e) => handleInputChange(index, 'message', e.target.value)}
+                style={inputStyle}
+                display='block'
+              />
+              <br />
+            </label>
+            <label style={{ ...labelStyle, display: 'block' }}> Restricciones Alimentarias
+              <textarea
+                name="restrictions"
+                value={formData2.restrictions}
+                onChange={(e) => handleInputChange(index, 'restrictions', e.target.value)}
                 style={inputStyle}
                 display='block'
               />

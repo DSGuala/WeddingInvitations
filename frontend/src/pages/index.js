@@ -364,10 +364,10 @@ const IndexPage = () => {
       const response = await fetch(backendURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(invitado),
+        body: JSON.stringify(invitado)
       });
-      const data = await response.json();
-      console.log('Server reply:', data);
+      // const data = await response.json();
+      console.log('Server replied');
       setLoading(false);
       setIsModalOpen3(true);
       }

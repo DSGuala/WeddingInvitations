@@ -4,14 +4,14 @@ const port = process.env.PORT || 8080;
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 // remove this when deploying
-// const cors = require('cors');
+const cors = require('cors');
 const { parse } = require('json2csv');  // json2csv to convert JSON to CSV
 const fs = require('fs');  // File system module to handle file streams
 const path = require('path');
 
 app.use(bodyParser.json());
 // remove this when deploying
-app.use(cors({origin: 'https://dsguala.github.io/'}));
+app.use(cors());
 
 require('dotenv').config();
 

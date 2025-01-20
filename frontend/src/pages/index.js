@@ -350,9 +350,12 @@ const IndexPage = () => {
   const closeModal3 = () => setIsModalOpen3(false);
   const [loading, setLoading] = React.useState(false)
 
+  const [isSubmitClose, setSubmitClose] = React.useState(true);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setSubmitClose(false);
     formData.forEach(async (invitado) => {
       console.log('Submited:', invitado.name, "awaiting reply");
       const response = await fetch(backendURL, {
@@ -364,7 +367,7 @@ const IndexPage = () => {
       console.log('Server reply:', data);
       setLoading(false);
       setIsModalOpen3(true);
-    }
+      }
     )
     };
 
@@ -675,7 +678,7 @@ const IndexPage = () => {
 
             
           <div>
-          <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
+          {isSubmitClose && (<Button type ='submit' onClick={handleSubmit}>Enviar</Button>)}
           {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
           {loading && <Hearts
             height="10vw"

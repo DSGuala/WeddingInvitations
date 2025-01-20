@@ -11,7 +11,7 @@ const path = require('path');
 
 app.use(bodyParser.json());
 // remove this when deploying
-// app.use(cors({origin: 'http://localhost:8000'}));
+app.use(cors({origin: 'https://dsguala.github.io/WeddingInvitations/'}));
 
 require('dotenv').config();
 

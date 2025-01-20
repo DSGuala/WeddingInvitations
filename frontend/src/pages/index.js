@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
+import { Hearts } from 'react-loader-spinner';
 
 import nosotrosFoto from "../images/HeroImage.png";
 // import iconoUbicacion from "../images/marker.svg";
@@ -17,8 +18,8 @@ import iconoMundo from "../images/earth-africa1.svg";
 import { withPrefix } from "gatsby";
 
 // Change before deploying
-// let backendURL = "http://localhost:8080/"
-backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
+let backendURL = "http://localhost:8080/"
+// backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
 
 const theme = {
   blue: {
@@ -347,19 +348,22 @@ const IndexPage = () => {
 
   const [isModalOpen3, setIsModalOpen3] = React.useState(false);
   const closeModal3 = () => setIsModalOpen3(false);
+  const [loading, setLoading] = React.useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsModalOpen3(true);
+    setLoading(true);
     formData.forEach(async (invitado) => {
+      console.log('Submited:', invitado.name, "awaiting reply");
       const response = await fetch(backendURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(invitado),
       });
       const data = await response.json();
-      console.log('Submited:', invitado.name);
       console.log('Server reply:', data);
+      setLoading(false);
+      setIsModalOpen3(true);
     }
     )
     };
@@ -559,7 +563,7 @@ const IndexPage = () => {
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
-        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si queres contribuir a los <br /> costos del festejo  </div>
+        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si querés contribuir con los <br /> costos del festejo  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw'}}>
           <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
           Desde Argentina por Mercado Pago
@@ -638,21 +642,21 @@ const IndexPage = () => {
                 <option value="No sé">No sé</option>
               </select>
             </label>
-            <label style={{ ...labelStyle, display: 'block' }}> Mensaje
-              <textarea
-                name="message"
-                value={formData2.message}
-                onChange={(e) => handleInputChange(index, 'message', e.target.value)}
-                style={inputStyle}
-                display='block'
-              />
-              <br />
-            </label>
             <label style={{ ...labelStyle, display: 'block' }}> Restricciones Alimentarias
               <textarea
                 name="restrictions"
                 value={formData2.restrictions}
                 onChange={(e) => handleInputChange(index, 'restrictions', e.target.value)}
+                style={inputStyle}
+                display='block'
+              />
+              <br />
+            </label>
+            <label style={{ ...labelStyle, display: 'block' }}> Mensaje
+              <textarea
+                name="message"
+                value={formData2.message}
+                onChange={(e) => handleInputChange(index, 'message', e.target.value)}
                 style={inputStyle}
                 display='block'
               />
@@ -671,13 +675,23 @@ const IndexPage = () => {
 
             
           <div>
-         <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
-         {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
+          <Button type ='submit' onClick={handleSubmit}>Enviar</Button>
+          {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
+          {loading && <Hearts
+            height="10vw"
+            width="10vw"
+            color={theme["teagreen"].default}
+            secondaryColor={theme["teagreen"].hover}
+            ariaLabel="loading"
+            wrapperStyle={{
+              position: 'relative',
+              justifyContent: "center"
+            }}
+            />}
           </div>
+          
           <br/>
        </div >
-      
-          
      
     </main>
   )

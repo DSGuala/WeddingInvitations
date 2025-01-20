@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
 });
 
 app.post("/", async (req, res) => {
+  await new Promise(resolve => setTimeout(resolve, 1000)); // force people to appreciate the loading hearts
   res.send(req.body);
   console.log('received data', req.body);
   console.log('sending data to database');

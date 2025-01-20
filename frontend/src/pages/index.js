@@ -18,8 +18,8 @@ import iconoMundo from "../images/earth-africa1.svg";
 import { withPrefix } from "gatsby";
 
 // Change before deploying
-let backendURL = "http://localhost:8080/"
-// backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
+// let backendURL = "http://localhost:8080/"
+backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
 
 const theme = {
   blue: {
@@ -347,7 +347,10 @@ const IndexPage = () => {
   
 
   const [isModalOpen3, setIsModalOpen3] = React.useState(false);
-  const closeModal3 = () => setIsModalOpen3(false);
+  const closeModal3 = () => {
+    setIsModalOpen3(false);
+    setSubmitClose(true);
+  }
   const [loading, setLoading] = React.useState(false)
 
   const [isSubmitClose, setSubmitClose] = React.useState(true);

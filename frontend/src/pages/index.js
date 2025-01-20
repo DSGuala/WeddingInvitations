@@ -17,8 +17,8 @@ import iconoMundo from "../images/earth-africa1.svg";
 import { withPrefix } from "gatsby";
 
 // Change before deploying
-let backendURL = "http://localhost:8080/"
-// backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
+// let backendURL = "http://localhost:8080/"
+backendURL = "https://sunny-emissary-445202-m6.ue.r.appspot.com/"
 
 const theme = {
   blue: {

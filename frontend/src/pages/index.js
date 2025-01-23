@@ -334,7 +334,8 @@ const IndexPage = () => {
     email: '',
     confirmacion: 'Si',
     message: '',
-    transporte: 'no',
+    transporte: 'No',
+    restrictions:'',
   }]);
 
   const handleChange = (e) => {
@@ -411,7 +412,15 @@ const IndexPage = () => {
   };
 
   const handleAddForm = (e) => {
-    setFormData([...formData, { name: '', email: '' }]); // Add a new form object.
+    setFormData([...formData, {
+      name: '',
+      email: '',
+      confirmacion: 'Si',
+      message: '',
+      transporte: 'No',
+      restrictions:'',
+    }]); // Add a new form object.
+  
     //e.target.remove();
   };
   
@@ -449,7 +458,7 @@ const IndexPage = () => {
       <div style={overlayStyle}>
         <div style={modalStyle}>
           <h2  style={paragraphStyles}>PayPal</h2>
-          <p  style={paragraphStyles}>link: here</p>
+           <a href="https://www.paypal.com/donate/?business=SUTKXAB3SJCQN&no_recurring=1&item_name=Your+presence+at+our+wedding+is+the+best+gift%21+Any+contributions+will+go+towards+the+celebrations+and+honeymoon%2C+thank+you%21&currency_code=CAD"> <Button>Donar</Button>  </a>
           <Button onClick={onClose}>Volver</Button>
         </div>
       </div>
@@ -466,9 +475,9 @@ const IndexPage = () => {
     return (
       <div style={overlayStyle}>
         <div style={modalStyle}>
-          <h2  style={paragraphStyles}>Tratá de evitar:</h2>
-          <p  style={paragraphStyles}> - Ojotas/crocs  <br/>  - Bermudas/shorts  <br/>  - Remeras con gráficos 
-          <br/>  - Jean roto o muy gastado <br/>  -Buso con capucha <br/>  - Ropa deportiva
+          <h1  style={{...paragraphStyles, fontSize:"5vw"}}>EVITAR:</h1>
+          <p  style={{...paragraphStyles, textAlign:"left", marginTop:"-5vw"}}> - Ojotas/crocs  <br/>  - Bermudas/shorts  <br/>  - Remeras con gráficos 
+          <br/>  - Jean roto o muy gastado <br/>  -Buzo con capucha <br/>  - Ropa deportiva
           </p>
           <Button onClick={onClose}>Volver</Button>
         </div>
@@ -569,7 +578,7 @@ const IndexPage = () => {
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
         <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
-        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si querés contribuir con los <br /> costos del festejo  </div>
+        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si querés contribuir con los <br /> costos del festejo o luna de miel:  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw'}}>
           <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
           Desde Argentina por Mercado Pago

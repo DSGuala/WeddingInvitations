@@ -2,9 +2,6 @@ import * as React from "react"
 import styled from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
 import { Hearts } from 'react-loader-spinner';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import EnglishPage from './en';
 
 import nosotrosFoto from "../images/HeroImage.png";
 // import iconoUbicacion from "../images/marker.svg";
@@ -517,12 +514,12 @@ const IndexPage = () => {
       <StaticImage src={"../images/HeroImage.png"} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
       {/* nombres*/}
       <div style={{ ...fancyFont, fontSize: "18vw", margin: 'auto', marginBottom: '10vw', marginTop: '10vw' }}>
-        Diego y Sofi</div>
+        Diego and Sofi</div>
       {/* dia semana, fecha, hora */}
       {/* TODO: poner porcentajes en vez de valores absolutos */}
       <div style={{ width: "100vw", height: "25vw", position: 'relative', margin: 'auto' }}>
-        <div style={{ width: "30vw", left: "10vw", top: "10vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>JUEVES</div>
-        <div style={{ width: "100vw", top: "1vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>MAYO</div>
+        <div style={{ width: "30vw", left: "10vw", top: "10vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>THURSDAY</div>
+        <div style={{ width: "100vw", top: "1vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>MAY</div>
         <div style={{ width: "100vw", top: "20vw", position: 'absolute', textAlign: 'center', color: '#535353', fontSize: "5vw", fontFamily: 'Mulish', fontWeight: '400', wordWrap: 'break-word' }}>2025</div>
         <div style={{ width: "30vw", left: "10vw", top: "9vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
         <div style={{ width: "30vw", left: "10vw", top: "18vw", position: 'absolute', background: '#535353', border: '0.1vw #535353 solid' }}></div>
@@ -534,8 +531,8 @@ const IndexPage = () => {
 
       {/* te queremos invitar */}
       <p style={paragraphStyles}>
-        Queremos que seas parte de
-        <br /> este momento tan especial.
+        We want you to be part of this
+        <br /> special moment.
       </p>
 
       <div style={{ position: 'relative', margin: 'auto', textAlign: 'center', width: '100%' }}>
@@ -556,20 +553,20 @@ const IndexPage = () => {
       </div>
 
       {/* direccion */}
-      <p style={headingStyle} id='DondeSection'>DÓNDE</p>
+      <p style={headingStyle} id='DondeSection'>WHERE</p>
       <p style={paragraphStyles}> Quinta P.L.
         B. Verazzi 1668,
         <br />
-        Pilar, Buenos Aires, Argentina</p>
-      <a href="https://maps.app.goo.gl/mG4yY1bEy1bJa1be6"> <Button>Ver Ubicación</Button>
+        Pilar, Provincia de Buenos Aires, Argentina</p>
+      <a href="https://maps.app.goo.gl/mG4yY1bEy1bJa1be6"> <Button>See Location</Button>
       </a>
       {/* embed mapa */}
       {/* <iframe title="embeded-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3291.681198400434!2d-58.8522799!3d-34.4094482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc9d9529581513%3A0x3107eac4dcad3e6c!2sQuinta%20P.L.!5e0!3m2!1sen!2sca!4v1735000668275!5m2!1sen!2sca" width="600" height="450" style={{border:0, margin:"auto"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <br/> */}
       {/* codigo de vestimenta */}
-      <p style={headingStyle} id="VestimentaSection"> CÓDIGO DE VESTIMENTA</p>
+      <p style={headingStyle} id="VestimentaSection">DRESS CODE</p>
       <p style={paragraphStyles}> 
-        ELEGANTE SPORT  
+        SMART CASUAL  
         <Button3 style={{fontWeight: "bold"  , position:'relative', top: '-0.5vw'}} onClick={openModalDressCode}>?</Button3>
          {isModalOpenDressCode && <ModalDressCode onClose={closeModalDressCode} />}
         <br/>
@@ -584,7 +581,7 @@ const IndexPage = () => {
         <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si querés contribuir con los <br /> costos del festejo o luna de miel:  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw'}}>
           <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
-          Desde Argentina por Mercado Pago
+          From Argentina with Mercado Pago
           <div>
          <Button2 onClick={openModal}>Detalles</Button2>
          {isModalOpen && <Modal onClose={closeModal} />}
@@ -592,9 +589,9 @@ const IndexPage = () => {
         </div>
         <div style={{ width: '50vw', left: '50vw', textAlign: 'center', top: "54vw", position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw', wordWrap: 'break-word' }}>
           <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/earth-africa1.svg"} alt="icono mundo" />
-          Desde el exterior usando PayPal
+          From anywhere using PayPal
           <div>
-         <Button2 onClick={openModal2}>Detalles</Button2>
+         <Button2 onClick={openModal2}>Details</Button2>
          {isModalOpen2 && <ModaPaypal onClose={closeModal2} />}
           </div>
         </div>
@@ -714,16 +711,6 @@ const IndexPage = () => {
     </main>
   )
 }
-
-// ReactDOM.render(
-//   <Router>
-//     <Switch>
-//       <Route exact path="/" component={IndexPage} />
-//       <Route path="/en" component={EnglishPage} />
-//     </Switch>
-//   </Router>,
-//   document.getElementById('root')
-// );
 
 export default IndexPage
 

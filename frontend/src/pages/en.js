@@ -379,9 +379,9 @@ const IndexPage = () => {
       return (
         <div style={overlayStyle}>
           <div style={modalStyle}>
-            <h2  style={paragraphStyles}>Gracias!</h2>
-            <p  style={paragraphStyles}>Tu información ha sido enviada</p>
-            <Button onClick={onClose}>Volver</Button>
+            <h2  style={paragraphStyles}>Thank you!</h2>
+            <p  style={paragraphStyles}>Your information was delivered</p>
+            <Button onClick={onClose}>Back</Button>
           </div>
         </div>
       );
@@ -441,7 +441,7 @@ const IndexPage = () => {
         <div style={modalStyle}>
           <h2  style={paragraphStyles}>Mercado pago</h2>
           <p  style={paragraphStyles}>Alias: casamiento.sofidiego</p>
-          <Button onClick={onClose}>Volver</Button>
+          <Button onClick={onClose}>Back</Button>
         </div>
       </div>
     );
@@ -458,8 +458,8 @@ const IndexPage = () => {
       <div style={overlayStyle}>
         <div style={modalStyle}>
           <h2  style={paragraphStyles}>PayPal</h2>
-           <a href="https://www.paypal.com/donate/?business=SUTKXAB3SJCQN&no_recurring=1&item_name=Your+presence+at+our+wedding+is+the+best+gift%21+Any+contributions+will+go+towards+the+celebrations+and+honeymoon%2C+thank+you%21&currency_code=CAD"> <Button>Donar</Button>  </a>
-          <Button onClick={onClose}>Volver</Button>
+           <a href="https://www.paypal.com/donate/?business=SUTKXAB3SJCQN&no_recurring=1&item_name=Your+presence+at+our+wedding+is+the+best+gift%21+Any+contributions+will+go+towards+the+celebrations+and+honeymoon%2C+thank+you%21&currency_code=CAD"> <Button>Donate</Button>  </a>
+          <Button onClick={onClose}>Back</Button>
         </div>
       </div>
     );
@@ -475,11 +475,11 @@ const IndexPage = () => {
     return (
       <div style={overlayStyle}>
         <div style={modalStyle}>
-          <h1  style={{...paragraphStyles, fontSize:"5vw"}}>EVITAR:</h1>
-          <p  style={{...paragraphStyles, textAlign:"left", marginTop:"-5vw"}}> - Ojotas/crocs  <br/>  - Bermudas/shorts  <br/>  - Remeras con gráficos 
-          <br/>  - Jean roto o muy gastado <br/>  -Buzo con capucha <br/>  - Ropa deportiva
+          <h1  style={{...paragraphStyles, fontSize:"5vw"}}>AVOID:</h1>
+          <p  style={{...paragraphStyles, textAlign:"left", marginTop:"-5vw"}}> - Flip flops/crocs  <br/>  - Shorts  <br/>  - Graphic t-shirts 
+          <br/>  - Torn or very worn jeans <br/>  - Hoodies <br/>  - Sportswear
           </p>
-          <Button onClick={onClose}>Volver</Button>
+          <Button onClick={onClose}>Back</Button>
         </div>
       </div>
     );
@@ -511,7 +511,7 @@ const IndexPage = () => {
   return (
     <main style={{ ...pageStyles, margin: 'auto' }}>
       {/* Collage Inicial */}
-      <StaticImage src={"../images/HeroImage.png"} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
+      <StaticImage src={"../images/Nosotros_english.png"} alt="Collage inicial" style={{ width: "100vw", margin: "auto" }} />
       {/* nombres*/}
       <div style={{ ...fancyFont, fontSize: "18vw", margin: 'auto', marginBottom: '10vw', marginTop: '10vw' }}>
         Diego and Sofi</div>
@@ -571,19 +571,19 @@ const IndexPage = () => {
          {isModalOpenDressCode && <ModalDressCode onClose={closeModalDressCode} />}
         <br/>
         <br/>
-        Venite lindo/a y elegante
+        Come dresesed nice and elegant
         <br/>
-        pero sobretodo cómodo/a.
+        but most importantly comfortable.
         </p>
       {/* tu presencia es regalo, colaboraciones para fiesta*/}
       <div style={{ width: "100vw", height: "88vw", position: 'relative', background: "#964742" }}>
-        <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> REGALOS</p>
-        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Tu presencia es nuestro regalo.<br /><br />Pero si querés contribuir con los <br /> costos del festejo o luna de miel:  </div>
+        <p style={{ ...headingStyle, color: theme.chorated.default, textShadow: "0vw 0.5vw 0.5vw #4c4545" }} id="RegalosSection"> <br /> PRESENTS</p>
+        <div style={{ ...paragraphStyles, color: theme.chorated.default, textAlign: 'center' }}>Your attendance is the best present.<br /><br />But if you would like to <br /> support the wedding or honeymoon:  </div>
         <div style={{ width: '50vw', top: "54vw", textAlign: 'center', position: 'absolute', color: '#F1F1F1', fontSize: "2.4vw", fontFamily: 'Mulish', fontWeight: '3vw'}}>
           <StaticImage style={{ ...iconoStyle, display: 'block', width: '7vw' }} src={"../images/ArgentinaBandera.svg"} alt="icono argentina" />
           From Argentina with Mercado Pago
           <div>
-         <Button2 onClick={openModal}>Detalles</Button2>
+         <Button2 onClick={openModal}>Details</Button2>
          {isModalOpen && <Modal onClose={closeModal} />}
           </div>
         </div>
@@ -600,18 +600,18 @@ const IndexPage = () => {
 
       </div>
       {/* RSVP */}
-      <p style={headingStyle} id="RSVPSection"> CONFIRMAR ASISTENCIA </p>
+      <p style={headingStyle} id="RSVPSection"> CONFIRM ATTENDANCE </p>
       <p style={{
         fontSize: "3vw", color: theme.darkchorated.default, fontWeight: '3vw', textAlign: 'center',
         fontFamily: "Mulish", marginBottom: '10vw'
       }}>
-        Asegurate de completar una casilla por <br />
-        invitado/a. Podés agregar invitados con el <br />
-        botón "+ invitado/a"  </p>
+        Make sure to complete one form per <br />
+        guest. Additional guests can be added with <br />
+        the "+ guest" button </p>
       <div style={containerStyle}>
         {formData.map((formData2, index) => (
           <form style={{ ...formStyle, clear: 'both' }} onSubmit={debugSubmit} key={index}>
-            <label style={{ ...labelStyle, display: 'block' }}> Nombre y Apellido
+            <label style={{ ...labelStyle, display: 'block' }}> Full Name
               <input
                 type="text"
                 name="name"
@@ -632,7 +632,7 @@ const IndexPage = () => {
                 display='block'
               />
             </label>
-            <label style={{ ...labelStyle, display: 'block' }}>Confimación
+            <label style={{ ...labelStyle, display: 'block' }}>Confirmation
               <select
                 name="confirmacion"
                 value={formData2.confirmacion}
@@ -640,11 +640,11 @@ const IndexPage = () => {
                 style={inputStyle}
                 display='block'
               >
-                <option value="Si ">Si</option>
-                <option value="No voy a poder"> No voy a poder</option>
+                <option value="Si ">Yes</option>
+                <option value="No voy a poder"> I won't be able to join</option>
               </select>
             </label>
-            <label style={{ ...labelStyle, display: 'block', marginLeft: '8vw' }}>¿Vas a necesitar transporte<br /> desde CABA?
+            <label style={{ ...labelStyle, display: 'block', marginLeft: '8vw' }}>Will you need transportation<br /> from the city to the venue?
             <select
                 name="transporte"
                 value={formData2.transporte}
@@ -653,11 +653,11 @@ const IndexPage = () => {
                 display='block'
               >
                 <option value="No">No</option>
-                <option value="Si">Si</option>
-                <option value="No sé">No sé</option>
+                <option value="Si">Yes</option>
+                <option value="No sé">Not sure</option>
               </select>
             </label>
-            <label style={{ ...labelStyle, display: 'block' }}> Restricciones Alimentarias
+            <label style={{ ...labelStyle, display: 'block' }}> Food Restrictions
               <textarea
                 name="restrictions"
                 value={formData2.restrictions}
@@ -667,7 +667,7 @@ const IndexPage = () => {
               />
               <br />
             </label>
-            <label style={{ ...labelStyle, display: 'block' }}> Mensaje
+            <label style={{ ...labelStyle, display: 'block' }}> Message
               <textarea
                 name="message"
                 value={formData2.message}
@@ -680,17 +680,17 @@ const IndexPage = () => {
             
             <div style={buttonContainer}>
             {index === formData.length - 1 && formData.length > 1 && (
-            <Button onClick={removeForm} style={{ marginLeft: '5vw' }}>- Invitado/a</Button>
+            <Button onClick={removeForm} style={{ marginLeft: '5vw' }}>- Guest</Button>
             )}
             {index === formData.length - 1 && (
-            <Button onClick={handleAddForm} style={{ marginRight: '5vw' }}>+ Invitado/a</Button> )}
+            <Button onClick={handleAddForm} style={{ marginRight: '5vw' }}>+ Guest</Button> )}
              
             </div>     
             </form>))}
 
             
           <div>
-          {isSubmitClose && (<Button type ='submit' onClick={handleSubmit}>Enviar</Button>)}
+          {isSubmitClose && (<Button type ='submit' onClick={handleSubmit}>Submit</Button>)}
           {isModalOpen3 && <ModalSubmit onClose={closeModal3} />}
           {loading && <Hearts
             height="10vw"

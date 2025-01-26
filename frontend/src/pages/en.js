@@ -714,4 +714,12 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <title>Home Page</title>
+export const Head = () => (
+  <>
+    <title>You're invited!</title>
+    <meta property="og:title" content="You're invited!" />
+    <meta property="og:description" content="We'd love for you to join us at our wedding." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dsguala.github.io/WeddingInvitations/" />
+  </>
+);

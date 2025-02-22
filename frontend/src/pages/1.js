@@ -2,10 +2,6 @@ import * as React from "react"
 import styled from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
 import { Hearts } from 'react-loader-spinner';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-import EnglishPage from './en';
-import PrimasPage from './1';
 
 import nosotrosFoto from "../images/HeroImage.png";
 // import iconoUbicacion from "../images/marker.svg";
@@ -605,13 +601,6 @@ const IndexPage = () => {
       </div>
       {/* RSVP */}
       <p style={headingStyle} id="RSVPSection"> CONFIRMAR ASISTENCIA </p>
-      <p style={{
-        fontSize: "3vw", color: theme.darkchorated.default, fontWeight: '3vw', textAlign: 'center',
-        fontFamily: "Mulish", marginBottom: '10vw'
-      }}>
-        Asegurate de completar una casilla por <br />
-        invitado/a. Podés agregar invitados con el <br />
-        botón "+ invitado/a"  </p>
       <div style={containerStyle}>
         {formData.map((formData2, index) => (
           <form style={{ ...formStyle, clear: 'both' }} onSubmit={debugSubmit} key={index}>
@@ -682,14 +671,14 @@ const IndexPage = () => {
               <br />
             </label>
             
-            <div style={buttonContainer}>
+            {/* <div style={buttonContainer}>
             {index === formData.length - 1 && formData.length > 1 && (
             <Button onClick={removeForm} style={{ marginLeft: '5vw' }}>- Invitado/a</Button>
             )}
             {index === formData.length - 1 && (
             <Button onClick={handleAddForm} style={{ marginRight: '5vw' }}>+ Invitado/a</Button> )}
              
-            </div>     
+            </div>      */}
             </form>))}
 
             
